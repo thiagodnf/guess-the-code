@@ -1,7 +1,7 @@
 {
 	"name": "guess-the-code",
 	"version": "1.0.0",
-	"description": "Try to guess the code",
+	"description": "Try to guess the code for unlocking the padlock",
 	"main": "server.js",
 	"scripts": {
 		"start": "node server.js"
