@@ -6,17 +6,6 @@ function getRandomInteger(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function isEverythingWrong(codes, target){
-
-    for(var i in codes){
-        if(target.includes(codes[i])){
-            return false;
-        }
-    }
-
-    return true;
-}
-
 function getValidNumbers(codes, target){
 
     var total = 0;
@@ -28,17 +17,6 @@ function getValidNumbers(codes, target){
     }
 
     return total;
-}
-
-function rightPlace(codes, target){
-
-    for(var i in codes){
-        if(codes[i] == target[i]){
-            return true;
-        }
-    }
-
-    return false;
 }
 
 function getCorrectNumbers(codes, target){
@@ -61,18 +39,16 @@ function evaluate(codes, target){
 
     if (valids == 0){
         return "Everthing is wrong!";
-    }else if(valids == 1){
-        if(rightPlace(codes, target)){
-            return "A correct number in a correct place";
-        }else{
-            return "A correct number in a wrong place";
-        }
-    }else if(valids == 2){
-        if(rightPlaceTwoNumbers(codes, target)){
-            return "Two correct number in a correct place";
-        }else{
-            return "Two correct number in a wrong place";
-        }
+    }else if(valids == 1 && corrects == 1){
+        return "A valid number in a correct place";
+    }else if(valids == 1 && corrects != 1){
+        return "A valid number in a wrong place";
+    }else if(valids == 2 && corrects == 2){
+        return "Two valid numbers in a correct place";
+    }else if(valids == 2 && corrects != 2){
+        return "Two valid numbers in a wrong place";
+    }else if(valids == 3 && corrects != 3){
+        return "Three valid numbers in a wrong place";
     }else if(valids == 3 && corrects == 3){
         return "Unlocked!";
     }
