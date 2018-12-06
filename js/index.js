@@ -91,10 +91,6 @@ $(function(){
     var targetCode2 = array.splice(getRandomInteger(0, array.length-1), 1)[0] ;
     var targetCode3 = array.splice(getRandomInteger(0, array.length-1), 1)[0] ;
 
-    targetCode1 = 7;
-    targetCode2 = 0;
-    targetCode3 = 8;
-
     var target = [targetCode1, targetCode2, targetCode3];
 
     $("#code-1").focus();
