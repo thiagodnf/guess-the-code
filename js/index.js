@@ -1,5 +1,9 @@
 function showMessage(type, message){
-    $(".output").addClass(type).html(message);
+    $(".output")
+        .removeClass("alert-danger")
+        .addClass(type)
+        .data("language", message)
+        .html(message.toLocaleString());
 }
 
 function hasDuplicates(array) {
@@ -43,30 +47,43 @@ function getCorrectNumbers(codes, target){
 function evaluate(codes, target){
 
     if (hasDuplicates(codes)){
-        return "The numbers should be different"
+        return "numbers.differents";
     }
 
     var valids = getValidNumbers(codes, target);
     var corrects = getCorrectNumbers(codes, target);
 
     if (valids == 0){
-        return "Everthing is wrong!";
+        return "everything.is.wrong";
     }else if(valids == 1 && corrects == 1){
-        return "A valid number in a correct place";
+        return "valid.number.correct.place";
     }else if(valids == 1 && corrects != 1){
-        return "A valid number in a wrong place";
+        return "valid.number.wrong.place";
     }else if(valids == 2 && corrects == 2){
-        return "Two valid numbers in a correct place";
+        return "two.valid.numbers.correct.place";
     }else if(valids == 2 && corrects != 2){
-        return "Two valid numbers in a wrong place";
+        return "two.valid.numbers.wrong.place";
     }else if(valids == 3 && corrects != 3){
-        return "Three valid numbers in a wrong place";
+        return "three.valid.numbers.wrong.place";
     }else if(valids == 3 && corrects == 3){
-        return "Unlocked!";
+        return "congratulations";
+    }
+}
+
+function loadLanguage(){
+    $("#btn-unlock").html("unlock".toLocaleString());
+    $("#hint").html("type.a.number".toLocaleString())
+
+    var key = $(".output").data("language");
+
+    if(key){
+        $(".output").html(key.toLocaleString());
     }
 }
 
 $(function(){
+
+    $('#select-language').selectpicker();
 
     var array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -101,11 +118,15 @@ $(function(){
 
         var result = evaluate([code1, code2, code3], target);
 
-        showMessage("alert-danger", result);
-
-        $(".lock-icon").effect( "shake",{}, 500, function(){});
-
-        $("#code-1").select();
+        if(result == "congratulations"){
+            showMessage("alert-success", result);
+            $(".lock").prop( "disabled", true );
+            $(".fas").removeClass("fa-lock").addClass("fa-lock-open");
+        }else{
+            showMessage("alert-danger", result);
+            $(".lock-icon").effect( "shake",{}, 500, function(){});
+            $("#code-1").select();
+        }
 
         return false;
     });
@@ -123,4 +144,25 @@ $(function(){
             this.select();
         });
     });
+
+    // When the user change the language, this should be saved
+    // and change the user interface
+    $("#select-language").change(function(){
+		String.locale = $(this).val();
+		localStorage.setItem("locale", String.locale);
+		loadLanguage();
+    });
+
+    // When load the page, we have to load the last language saved
+    var locale = localStorage.getItem("locale");
+
+    if(locale != null){
+		String.locale = locale;
+	}else{
+		String.locale = 'en-US';
+    }
+
+    $('#select-language').selectpicker('val', String.locale);
+
+    loadLanguage();
 });
