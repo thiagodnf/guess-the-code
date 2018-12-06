@@ -8,7 +8,7 @@ body{
     margin-top: 100px;
 }
 
-.numbers input[type=number]{
+.numbers input[type=text]{
     height: 200px;
     width: 130px;
     font-size: 8em;

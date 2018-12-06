@@ -80,7 +80,6 @@ $(function(){
         $("#btn-unlock").focus();
     });
 
-console.log(target)
     $("#form-unlock").submit(function(event){
         event.preventDefault();
 
@@ -88,26 +87,24 @@ console.log(target)
         var code2 = parseInt($(this).find("#code-2").val());
         var code3 = parseInt($(this).find("#code-3").val());
 
-        var correct = 0;
-
-        if(code1 == targetCode1){
-            correct++;
-        }
-        if(code2 == targetCode2){
-            correct++;
-        }
-        if(code3 == targetCode3){
-            correct++;
-        }
-
-        if(correct == 3){
-            alert("Unlocked!");
-        }else{
-            alert(evaluate([code1, code2, code3], target));
-        }
+        alert(evaluate([code1, code2, code3], target));
 
         $("#code-1").select();
 
         return false;
+    });
+
+    $(".codes").keypress( function(event) {
+        if (event.which <  48 || event.which > 58) {
+            event.preventDefault();
+        }
+    });
+
+    // When click on input, select all the content.
+    // Now the use is able just to type the new number
+    $('input').each(function(){
+        $(this).click(function() {
+            this.select();
+        });
     });
 });
