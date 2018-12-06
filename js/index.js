@@ -150,7 +150,8 @@ $(function(){
     $("#select-language").change(function(){
 		String.locale = $(this).val();
 		localStorage.setItem("locale", String.locale);
-		loadLanguage();
+        loadLanguage();
+        $("#code-1").focus();
     });
 
     // When load the page, we have to load the last language saved
