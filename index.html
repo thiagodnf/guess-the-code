@@ -24,25 +24,33 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 text-center">
-                        <i class="fas fa-lock fa-10x" ></i>
+                        <div class="lock-icon">
+                            <i class="fas fa-lock fa-8x" ></i>
+                        </div>
+                        <br/>
+                        <br/>
+                        <p>Type a number between 0 and 9</p>
                     </div>
                 </div>
-                <br>
-                <form id="form-unlock">
+                <form id="form-unlock" method="GET" action="#">
                     <div class="numbers">
                         <center>
-                            <input type="text" class="form-control codes" maxlength="1" min="0" step="1" max="9" autocomplete="off" id="code-1" required pattern="[0-9]{1}">
-                            <input type="text" class="form-control codes" maxlength="1" min="0" step="1" max="9" autocomplete="off" id="code-2" required pattern="[0-9]{1}">
-                            <input type="text" class="form-control codes" maxlength="1" min="0" step="1" max="9" autocomplete="off" id="code-3" required pattern="[0-9]{1}">
+                            <input type="text" class="form-control codes" maxlength="1" min="0" step="1" max="9" autocomplete="off" id="code-1" tabindex="1" required pattern="[0-9]{1}">
+                            <input type="text" class="form-control codes" maxlength="1" min="0" step="1" max="9" autocomplete="off" id="code-2" tabindex="2" required pattern="[0-9]{1}">
+                            <input type="text" class="form-control codes" maxlength="1" min="0" step="1" max="9" autocomplete="off" id="code-3" tabindex="3" required pattern="[0-9]{1}">
                         </center>
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="btn btn-success btn-lg" id="btn-unlock">Unlock</button>
+                        <button type="submit" class="btn btn-success btn-lg" id="btn-unlock" tabindex="4">Unlock</button>
                     </div>
                 </form>
                 <br/>
-                <div class="output alert alert-danger">
-
+                <div class="row">
+                    <div class="col-3"></div>
+                    <div class="col-6">
+                        <div class="output alert text-center"> </div>
+                    </div>
+                    <div class="col-3"></div>
                 </div>
             </div>
         </div>

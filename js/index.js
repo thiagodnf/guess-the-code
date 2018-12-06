@@ -1,3 +1,11 @@
+function showMessage(type, message){
+    $(".output").addClass(type).html(message);
+}
+
+function hasDuplicates(array) {
+    return (new Set(array)).size !== array.length;
+}
+
 function getRandomInteger(min, max) {
 
     min = Math.ceil(min);
@@ -33,6 +41,10 @@ function getCorrectNumbers(codes, target){
 }
 
 function evaluate(codes, target){
+
+    if (hasDuplicates(codes)){
+        return "The numbers should be different"
+    }
 
     var valids = getValidNumbers(codes, target);
     var corrects = getCorrectNumbers(codes, target);
@@ -87,7 +99,11 @@ $(function(){
         var code2 = parseInt($(this).find("#code-2").val());
         var code3 = parseInt($(this).find("#code-3").val());
 
-        alert(evaluate([code1, code2, code3], target));
+        var result = evaluate([code1, code2, code3], target);
+
+        showMessage("alert-danger", result);
+
+        $(".lock-icon").effect( "shake",{}, 500, function(){});
 
         $("#code-1").select();
 
