@@ -108,12 +108,12 @@ $(function(){
         $("#btn-unlock").focus();
     });
 
-    $("#form-unlock").submit(function(event){
+    $("#btn-unlock").click(function(event){
         event.preventDefault();
 
-        var code1 = parseInt($(this).find("#code-1").val());
-        var code2 = parseInt($(this).find("#code-2").val());
-        var code3 = parseInt($(this).find("#code-3").val());
+        var code1 = parseInt($("#code-1").val());
+        var code2 = parseInt($("#code-2").val());
+        var code3 = parseInt($("#code-3").val());
 
         var result = evaluate([code1, code2, code3], target);
 
