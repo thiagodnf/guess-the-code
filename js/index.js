@@ -108,7 +108,7 @@ $(function(){
         $("#btn-unlock").focus();
     });
 
-    $("#btn-unlock").click(function(event){
+    $("#form-unlock").submit(function(event){
         event.preventDefault();
 
         var code1 = parseInt($("#code-1").val());
@@ -131,8 +131,10 @@ $(function(){
     });
 
     $(".codes").keypress( function(event) {
-        if (event.which <  48 || event.which > 58) {
-            event.preventDefault();
+        if(event.which != 13){
+            if (event.which <  48 || event.which > 58 ) {
+                event.preventDefault();
+            }
         }
     });
 
