@@ -93,6 +93,9 @@ $(function(){
 
     var target = [targetCode1, targetCode2, targetCode3];
 
+    console.log("Target: ");
+    console.log(target);
+
     $("#code-1").focus();
 
     $('#code-1').on('input', function() {
