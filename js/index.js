@@ -176,7 +176,7 @@ $(function(){
 
         var encrypted = encodeCodes(code1, code2, code3);
 
-        var href = window.location.protocol+ "//"+window.location.host+"?code="+encrypted
+        var href = window.location.protocol+ "//"+window.location.host+window.location.pathname+"?code="+encrypted
 
         $("#challenge-link").val(href).select();
 
