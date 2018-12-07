@@ -1,9 +1,9 @@
-function showMessage(type, message){
+function showMessage(type, message, attempts){
     $(".output")
         .removeClass("alert-danger")
         .addClass(type)
         .data("language", message)
-        .html(message.toLocaleString());
+        .html(message.toLocaleString().replace("{0}", attempts));
 }
 
 function hasDuplicates(array) {
@@ -73,6 +73,11 @@ function evaluate(codes, target){
 function loadLanguage(){
     $("#btn-unlock").html("unlock".toLocaleString());
     $("#hint").html("type.a.number".toLocaleString())
+    $("#modal-challenge-your-friends .modal-title").html("challenge.your.friends".toLocaleString());
+    $("#btn-challenge-your-friends").html("challenge.your.friends".toLocaleString());
+    $("#label-type-the-code").html("type.the.code".toLocaleString());
+    $("#btn-generate-link").html("generate".toLocaleString());
+    $("#btn-close").html("close".toLocaleString());
 
     var key = $(".output").data("language");
 
@@ -81,9 +86,23 @@ function loadLanguage(){
     }
 }
 
-$(function(){
+function encodeCodes(code1, code2, code3){
 
-    $('#select-language').selectpicker();
+    var str = code1 + "," + code2 + "," + code3;
+
+    return CryptoJS.AES.encrypt(str, "guess-the-code");
+}
+
+function decodeCode(str){
+
+    var decrypted = CryptoJS.AES.decrypt(str, "guess-the-code").toString(CryptoJS.enc.Utf8);
+
+    var s = decrypted.split(",");
+
+    return [parseInt(s[0]), parseInt(s[1]), parseInt(s[2])];
+}
+
+function getRandomArray(){
 
     var array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
@@ -91,10 +110,24 @@ $(function(){
     var targetCode2 = array.splice(getRandomInteger(0, array.length-1), 1)[0] ;
     var targetCode3 = array.splice(getRandomInteger(0, array.length-1), 1)[0] ;
 
-    var target = [targetCode1, targetCode2, targetCode3];
+    return [targetCode1, targetCode2, targetCode3];
+}
 
-    console.log("Target: ");
-    console.log(target);
+$(function(){
+
+    var target = [];
+    var attempts = 0;
+    var code = location.search.split('code=')[1];
+
+    if(code){
+        target = decodeCode(code);
+    }else{
+        target = getRandomArray();
+
+        console.log("Target: ", target);
+    }
+
+    $('#select-language').selectpicker();
 
     $("#code-1").focus();
 
@@ -108,8 +141,52 @@ $(function(){
         $("#btn-unlock").focus();
     });
 
+    $('#share-code-1').on('input', function() {
+        $("#share-code-2").select();
+    });
+    $('#share-code-2').on('input', function() {
+        $("#share-code-3").select();
+    });
+    $('#share-code-3').on('input', function() {
+        $("#btn-generate-link").focus();
+    });
+
+    $('#modal-challenge-your-friends').on('shown.bs.modal', function (e) {
+        $(".share-code").val("");
+        $("#challenge-link").val("");
+        $("#share-code-1").select();
+    });
+
+    $('#modal-challenge-your-friends').on('hidde.bs.modal', function (e) {
+        $("#code-1").focus();
+    });
+
+    $("#form-challenge-your-friends").submit(function(event){
+
+        event.preventDefault();
+
+        var code1 = parseInt($("#share-code-1").val());
+        var code2 = parseInt($("#share-code-2").val());
+        var code3 = parseInt($("#share-code-3").val());
+
+        if (hasDuplicates([code1,code2,code3])){
+            $("#share-code-1").select();
+            return alert("numbers.differents".toLocaleString());
+        }
+
+        var encrypted = encodeCodes(code1, code2, code3);
+
+        var href = window.location.protocol+ "//"+window.location.host+"?code="+encrypted
+
+        $("#challenge-link").val(href).select();
+
+        return false;
+    });
+
     $("#form-unlock").submit(function(event){
         event.preventDefault();
+
+        attempts++;
 
         var code1 = parseInt($("#code-1").val());
         var code2 = parseInt($("#code-2").val());
@@ -118,7 +195,7 @@ $(function(){
         var result = evaluate([code1, code2, code3], target);
 
         if(result == "congratulations"){
-            showMessage("alert-success", result);
+            showMessage("alert-success", result, attempts);
             $(".lock").prop( "disabled", true );
             $(".fas").removeClass("fa-lock").addClass("fa-lock-open");
         }else{
@@ -131,6 +208,14 @@ $(function(){
     });
 
     $(".codes").keypress( function(event) {
+        if(event.which != 13){
+            if (event.which <  48 || event.which > 58 ) {
+                event.preventDefault();
+            }
+        }
+    });
+
+    $(".share-code").keypress( function(event) {
         if(event.which != 13){
             if (event.which <  48 || event.which > 58 ) {
                 event.preventDefault();
@@ -167,4 +252,9 @@ $(function(){
     $('#select-language').selectpicker('val', String.locale);
 
     loadLanguage();
+
+    // Clip the link to clipboard
+    new ClipboardJS('.btn');
+
+
 });

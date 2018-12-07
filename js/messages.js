@@ -8,8 +8,13 @@ String.toLocaleString({
         "two.valid.numbers.wrong.place": "Two valid numbers in a wrong place",
         "three.valid.numbers.wrong.place": "Three valid numbers in a wrong place",
         "unlock": "Unlock",
-        "congratulations": "Congratulations!",
-        "type.a.number": "Type a number between 0 and 9"
+        "congratulations": "Congratulations! You guessed the code in {0} guesses!",
+        "type.a.number": "Type a number between 0 and 9",
+        "challenge.your.friends": "Challenge your friends",
+        "type.the.code": "Type the code:",
+        "generate": "Generate",
+        "copy": "Copy",
+        "close": "Close"
 	},
 	"pt-BR": {
         "numbers.differents": "Os números devem ser diferentes",
@@ -20,7 +25,12 @@ String.toLocaleString({
         "two.valid.numbers.wrong.place": "Dois números corretos, mas no lugar errado",
         "three.valid.numbers.wrong.place": "Três números válidos em lugares errados",
         "unlock": "Desbloquear",
-        "congratulations": "Parabéns!",
-        "type.a.number": "Digite um número entre 0 e 9"
+        "congratulations": "Parabéns! Você adivinhou o código em {0} tentativas!",
+        "type.a.number": "Digite um número entre 0 e 9",
+        "challenge.your.friends": "Desafie seus amigos",
+        "type.the.code": "Digite o código:",
+        "generate": "Gerar",
+        "copy" : "Copiar",
+        "close": "Fechar"
 	}
 });
