@@ -15,30 +15,30 @@
     "use strict";
 
     var
-      undef_type = "undefined"
-    , string_type = "string"
-    , nav = self.navigator
-    , String_ctr = String
-    , has_own_prop = Object.prototype.hasOwnProperty
-    , load_queues = {}
-    , localizations = {}
-    , FALSE = !1
-    , TRUE = !0
+      undef_type = "undefined",
+     string_type = "string",
+     nav = self.navigator,
+     String_ctr = String,
+     has_own_prop = Object.prototype.hasOwnProperty,
+     load_queues = {},
+     localizations = {},
+     FALSE = !1,
+     TRUE = !0,
     // the official format is application/vnd.oftn.l10n+json, though l10n.js will also
     // accept application/x-l10n+json and application/l10n+json
-    , l10n_js_media_type = /^\s*application\/(?:vnd\.oftn\.|x-)?l10n\+json\s*(?:$|;)/i
-    , XHR
+     l10n_js_media_type = /^\s*application\/(?:vnd\.oftn\.|x-)?l10n\+json\s*(?:$|;)/i,
+     XHR,
 
     // property minification aids
-    , $locale = "locale"
-    , $default_locale = "defaultLocale"
-    , $to_locale_string = "toLocaleString"
-    , $to_lowercase = "toLowerCase"
+     $locale = "locale",
+     $default_locale = "defaultLocale",
+     $to_locale_string = "toLocaleString",
+     $to_lowercase = "toLowerCase",
 
-    , array_index_of = Array.prototype.indexOf || function (item) {
+     array_index_of = Array.prototype.indexOf || function (item) {
         var
-          len = this.length
-        , i   = 0
+          len = this.length,
+         i   = 0
         ;
 
         for (; i < len; i++) {
@@ -48,8 +48,8 @@
         }
 
         return -1;
-    }
-    , request_JSON = function (uri) {
+    },
+     request_JSON = function (uri) {
         var req  = new XHR(),
             data = {};
 
@@ -73,8 +73,8 @@
         }
 
         return data;
-    }
-    , load = String_ctr[$to_locale_string] = function (data) {
+    },
+     load = String_ctr[$to_locale_string] = function (data) {
         // don't handle function.toLocaleString(indentationAmount:Number)
         if (arguments.length > 0 && typeof data !== "number") {
             if (typeof data === string_type) {
@@ -124,13 +124,13 @@
         }
         // Return what function.toLocaleString() normally returns
         return Function.prototype[$to_locale_string].apply(String_ctr, arguments);
-    }
-    , process_load_queue = function (locale) {
+    },
+     process_load_queue = function (locale) {
         var
-          queue = load_queues[locale]
-        , i = 0
-        , len = queue.length
-        , localization
+          queue = load_queues[locale],
+         i = 0,
+         len = queue.length,
+         localization
         ;
 
         for (; i < len; i++) {
@@ -140,16 +140,16 @@
         }
 
         delete load_queues[locale];
-    }
-    , use_default
-    , localize = String_ctr.prototype[$to_locale_string] = function () {
+    },
+     use_default,
+     localize = String_ctr.prototype[$to_locale_string] = function () {
         var
-          using_default = use_default
-        , current_locale = String_ctr[using_default ? $default_locale : $locale]
-        , parts = current_locale[$to_lowercase]().split("-")
-        , i = parts.length
-        , this_val = this.valueOf()
-        , locale
+          using_default = use_default,
+         current_locale = String_ctr[using_default ? $default_locale : $locale],
+         parts = current_locale[$to_lowercase]().split("-"),
+         i = parts.length,
+         this_val = this.valueOf(),
+         locale
         ;
 
         use_default = FALSE;
@@ -203,15 +203,15 @@
 
     if (typeof document !== undef_type) {
         var
-          elts = document.getElementsByTagName("link")
-        , i = elts.length
-        , localization
+          elts = document.getElementsByTagName("link"),
+         i = elts.length,
+         localization
         ;
 
         while (i--) {
             var
-              elt = elts[i]
-            , rel = (elt.getAttribute("rel") || "")[$to_lowercase]().split(/\s+/)
+              elt = elts[i],
+             rel = (elt.getAttribute("rel") || "")[$to_lowercase]().split(/\s+/)
             ;
 
             if (l10n_js_media_type.test(elt.type)) {

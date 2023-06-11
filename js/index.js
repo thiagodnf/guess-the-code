@@ -72,7 +72,7 @@ function evaluate(codes, target){
 
 function loadLanguage(){
     $("#btn-unlock").html("unlock".toLocaleString());
-    $("#hint").html("type.a.number".toLocaleString())
+    $("#hint").html("type.a.number".toLocaleString());
     $("#modal-challenge-your-friends .modal-title").html("challenge.your.friends".toLocaleString());
     $("#btn-challenge-your-friends").html("challenge.your.friends".toLocaleString());
     $("#label-type-the-code").html("type.the.code".toLocaleString());
@@ -117,7 +117,7 @@ $(function(){
 
     var target = [];
     var attempts = 0;
-    var code = location.search.split('code=')[1];
+    var code = location.search.split("code=")[1];
 
     if(code){
         target = decodeCode(code);
@@ -127,37 +127,37 @@ $(function(){
         console.log("Target: ", target);
     }
 
-    $('#select-language').selectpicker();
+    $("#select-language").selectpicker();
 
     $("#code-1").focus();
 
-    $('#code-1').on('input', function() {
+    $("#code-1").on("input", function() {
         $("#code-2").select();
     });
-    $('#code-2').on('input', function() {
+    $("#code-2").on("input", function() {
         $("#code-3").select();
     });
-    $('#code-3').on('input', function() {
+    $("#code-3").on("input", function() {
         $("#btn-unlock").focus();
     });
 
-    $('#share-code-1').on('input', function() {
+    $("#share-code-1").on("input", function() {
         $("#share-code-2").select();
     });
-    $('#share-code-2').on('input', function() {
+    $("#share-code-2").on("input", function() {
         $("#share-code-3").select();
     });
-    $('#share-code-3').on('input', function() {
+    $("#share-code-3").on("input", function() {
         $("#btn-generate-link").focus();
     });
 
-    $('#modal-challenge-your-friends').on('shown.bs.modal', function (e) {
+    $("#modal-challenge-your-friends").on("shown.bs.modal", function (e) {
         $(".share-code").val("");
         $("#challenge-link").val("");
         $("#share-code-1").select();
     });
 
-    $('#modal-challenge-your-friends').on('hidde.bs.modal', function (e) {
+    $("#modal-challenge-your-friends").on("hidde.bs.modal", function (e) {
         $("#code-1").focus();
     });
 
@@ -176,7 +176,7 @@ $(function(){
 
         var encrypted = encodeCodes(code1, code2, code3);
 
-        var href = window.location.protocol+ "//"+window.location.host+window.location.pathname+"?code="+encrypted
+        var href = window.location.protocol+ "//"+window.location.host+window.location.pathname+"?code="+encrypted;
 
         $("#challenge-link").val(href).select();
 
@@ -225,7 +225,7 @@ $(function(){
 
     // When click on input, select all the content.
     // Now the use is able just to type the new number
-    $('input').each(function(){
+    $("input").each(function(){
         $(this).click(function() {
             this.select();
         });
@@ -246,15 +246,15 @@ $(function(){
     if(locale != null){
 		String.locale = locale;
 	}else{
-		String.locale = 'en-US';
+		String.locale = "en-US";
     }
 
-    $('#select-language').selectpicker('val', String.locale);
+    $("#select-language").selectpicker("val", String.locale);
 
     loadLanguage();
 
     // Clip the link to clipboard
-    new ClipboardJS('.btn');
+    new ClipboardJS(".btn");
 
 
 });
