@@ -17,7 +17,7 @@
 	"author": "Guess the Number!",
 	"license": "MIT",
 	"homepage": "https://thiagodnf.github.io/guess-the-code",
-	"dependencies": {
+	"devDependencies": {
 		"serve-static": "1.15.0",
 		"connect": "3.7.0",
 		"network": "0.6.1",
