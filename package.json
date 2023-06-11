@@ -1,10 +1,11 @@
 {
 	"name": "guess-the-code",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"description": "Try to guess the code for unlocking the padlock",
 	"main": "server.js",
 	"scripts": {
-		"start": "node server.js"
+		"dev": "node server.js",
+        "update-dependencies": "ncu -u"
 	},
 	"engines": {
 		"node": ">=8.9.1"
@@ -17,10 +18,10 @@
 	"license": "MIT",
 	"homepage": "https://thiagodnf.github.io/guess-the-code",
 	"dependencies": {
-		"serve-static": "^1.13.2",
-		"connect": "^3.6.6",
-		"network": "^0.4.1",
-		"winston": "^2.4.2",
-		"livereload": "^0.7.0"
+		"serve-static": "1.15.0",
+		"connect": "3.7.0",
+		"network": "0.6.1",
+		"winston": "3.9.0",
+		"livereload": "0.9.3"
 	}
 }
