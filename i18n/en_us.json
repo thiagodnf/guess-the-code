@@ -1,0 +1,18 @@
+{
+    "@metadata": {
+        "authors": [
+            "Thiago Ferreira"
+        ],
+        "locale": "en_us"
+    },
+    "error-empty-number": "You should enter all numbers",
+    "type-a-number": "Type a number between $1 and $2",
+    "restart-game": "Restart Game",
+    "unlock": "Unlock",
+    "end-game": "Congratulations! You guessed the code in $1 guesses!",
+    "valid.numbers.in.correct.places": "$1 valid number(s) in a correct place",
+    "valid.numbers.in.wrong.places": "$1 valid number(s) in a wrong place",
+    "everything.is.wrong": "Everthing is wrong",
+    "en_us": "English (United States)",
+    "pt_br": "Portuguese (Brazil)"
+}

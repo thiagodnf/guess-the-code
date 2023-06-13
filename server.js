@@ -10,7 +10,7 @@ const { createLogger, format, transports } = require("winston");
 
 connect().use("/", serveStatic(__dirname)).listen(port);
 
-liveReload.createServer().watch(__dirname);
+// liveReload.createServer().watch(__dirname);
 
 const logger = createLogger({
     format: format.combine(

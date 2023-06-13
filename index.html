@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 
 <head>
     <meta charset="utf-8">
@@ -20,125 +20,120 @@
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
     <!-- Custom -->
     <link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 
 <body>
 
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-md bg-body-tertiary mb-5">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Guess the Code</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                </ul>
+                <ul class="navbar-nav me-auto "></ul>
+                <!-- <ul class="navbar-nav me-auto ">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            Dropdown
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light">
+                                    <i class="fas fa-lock me-2"></i>Light
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="dark">
+                                    <i class="fas fa-lock me-2"></i>Dark
+                                </button>
+                            </li>
+                        </ul>
+                    </li>
+                </ul> -->
+
                 <form class="d-flex">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a type="button" class="nav-link" id="btn-challenge-your-friends" data-bs-toggle="modal" data-bs-target="#modal-challenge-your-friends">Challenge your friends</a>
-                        </li>
-                    </ul>
-                    <select data-validation="required" id="select-language" data-dropdown-align-right="true">
-                        <option value="en-US" data-content="<img src='img/flags/en-us.png'> English">English</option>
-                        <option value="pt-BR" data-content="<img src='img/flags/pt-br.png'> Português">Português</option>
-                    </select>
+
+                    <button id="btn-settings" type="button" class="dropdown-item d-flex align-items-center active">
+                        <i class="fas fa-cog me-2"></i>Settings
+                    </button>
+                    <!-- <select id="select-language">
+                        <option value="en_us" data-icon="flag-icon flag-icon-us" data-i18n="en_us">en_us</option>
+                        <option value="pt_br" data-icon="flag-icon flag-icon-br" data-i18n="pt_br">pt_br</option>
+                    </select> -->
                 </form>
             </div>
         </div>
     </nav>
 
-
-
-
-
-
     <div class="container">
-        <br />
-        <form class="" role="search">
-            <div class="form-row">
-
+        <div class="row text-center mb-3">
+            <div class="lock mb-3">
+                <i class="fas fa-lock fa-7x"></i>
             </div>
-        </form>
-    </div>
-    <div class="content">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 text-center">
-                    <div class="lock-icon">
-                        <i class="fas fa-lock fa-8x"></i>
-                    </div>
-                    <br />
-                    <p id="hint">Type a number between 0 and 9</p>
+        </div>
+        <div class="row text-center mb-2">
+            <p id="type-a-number">type-a-number</p>
+        </div>
+        <div class="row mb-3">
+            <div id="numbers" class="d-flex flex-nowrap overflow-auto"></div>
+        </div>
+        <div class="row">
+            <div class="col-12 offset-md-2 col-md-8 offset-md-2 offset-lg-4 col-lg-4 offset-lg-4">
+                <div class="d-grid mb-3">
+                    <button class="btn btn-success btn-lg" id="btn-unlock" tabindex="4" data-i18n="unlock">unlock</button>
+                    <button class="btn btn-primary btn-lg" id="btn-restart" tabindex="5" data-i18n="restart-game">Restart Game</button>
                 </div>
-            </div>
-            <form id="form-unlock">
-                <div class="numbers">
-                    <center>
-                        <input type="text" class="form-control codes lock" maxlength="1" min="0" step="1" max="9" autocomplete="off" id="code-1" tabindex="1" required pattern="[0-9]{1}">
-                        <input type="text" class="form-control codes lock" maxlength="1" min="0" step="1" max="9" autocomplete="off" id="code-2" tabindex="2" required pattern="[0-9]{1}">
-                        <input type="text" class="form-control codes lock" maxlength="1" min="0" step="1" max="9" autocomplete="off" id="code-3" tabindex="3" required pattern="[0-9]{1}">
-                    </center>
-                </div>
-                <div class="row">
-                    <div class="col-3"></div>
-                    <div class="col-6">
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-success btn-lg btn-block lock" id="btn-unlock" tabindex="4">Unlock</button>
-                        </div>
-                    </div>
-                    <div class="col-3"></div>
-                </div>
-            </form>
-            <br />
-            <div class="row">
-                <div class="col-3"></div>
-                <div class="col-6">
-                    <div class="output alert text-center"> </div>
-                </div>
-                <div class="col-3"></div>
+                <div id="message-box" class="alert text-center"></div>
             </div>
         </div>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="modal-challenge-your-friends" tabindex="-1">
+    <!-- Settings Modal-->
+    <div class="modal" id="modal-settings" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form id="form-challenge-your-friends">
-                    <div class="modal-header">
-                        <h5 class="modal-title">Challenge your friends</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p id="label-type-the-code">Type the your code:</p>
-                        <div class="row">
-                            <div class="col-3"></div>
-                            <div class="col-2">
-                                <input type="text" class="form-control share-code" maxlength="1" min="0" step="1" max="9" autocomplete="off" id="share-code-1" tabindex="1" required pattern="[0-9]{1}">
-                            </div>
-                            <div class="col-2">
-                                <input type="text" class="form-control share-code" maxlength="1" min="0" step="1" max="9" autocomplete="off" id="share-code-2" tabindex="2" required pattern="[0-9]{1}">
-                            </div>
-                            <div class="col-2">
-                                <input type="text" class="form-control share-code" maxlength="1" min="0" step="1" max="9" autocomplete="off" id="share-code-3" tabindex="3" required pattern="[0-9]{1}">
-                            </div>
-                            <div class="col-3"></div>
-                        </div>
-                        <p>Link:</p>
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" id="challenge-link" autocomplete="off">
-                            <div class="input-group-append">
-                                <button class="btn btn-outline-secondary" id="btn-copy-link" type="button" data-clipboard-target="#challenge-link"><i class="far fa-copy"></i></button>
+                <div class="modal-header">
+                    <h5 class="modal-title">Welcome</h5>
+                </div>
+                <form>
+                    <div class="modal-body container">
+                        <div class="row mb-3">
+                            <label for="size" class="col-form-label col-6 col-md-4">Size</label>
+                            <div class="col-6 col-md-8 d-flex align-items-center justify-content-end">
+                                <input type="number" class="form-control" autofocus id="size" placeholder="Size" min="3" max="10" step="1" value="3" autocomplete="off" inputmode="decimal">
                             </div>
                         </div>
-
+                        <div class="row mb-3">
+                            <label for="mode" class="col-form-label col-6 col-md-4">Mode</label>
+                            <div class="col-6 col-md-8 d-flex align-items-center justify-content-end">
+                                <select class="form-select" id="mode">
+                                    <option value="random" selected>Random</option>
+                                    <option value="manual">Manual</option>
+                                </select>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="row d-none" id="mode-manual">
+                            <label for="manual" class="form-label">Numbers</label>
+                            <div id="manuals" class="d-flex align-items-center justify-content-end d-grid"></div>
+                        </div>
+                        <div class="row" id="mode-random">
+                            <label for="interval-min" class="form-label">Interval</label>
+                            <div class="d-flex align-items-center justify-content-end">
+                                <div class="input-group" id="interval">
+                                    <input type="number" class="form-control" id="interval-min" placeholder="Min" min="0" max="99" step="1" autocomplete="off" inputmode="decimal">
+                                    <span class="input-group-text">to</span>
+                                    <input type="number" class="form-control" id="interval-max" placeholder="Max" min="0" max="99" step="1" autocomplete="off" inputmode="decimal">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-success" id="btn-generate-link">Generate</button>
-                        <button type="button" class="btn btn-secondary" id="btn-close" data-bs-dismiss="modal">Close</button>
+                        <button id="save" type="button" class="btn btn-primary">Save</button>
                     </div>
                 </form>
             </div>
@@ -159,8 +154,39 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js"></script>
 
+
+
+    <!-- jQuery i18n-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.i18n/1.0.8/jquery.i18n.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.i18n/1.0.8/jquery.i18n.messagestore.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.i18n/1.0.8/jquery.i18n.fallbacks.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.i18n/1.0.8/jquery.i18n.language.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.i18n/1.0.8/jquery.i18n.parser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.i18n/1.0.8/jquery.i18n.emitter.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.i18n/1.0.8/jquery.i18n.emitter.bidi.min.js"></script>
+
+    <script src="https://chancejs.com/chance.min.js"></script>
+
     <!-- Custom -->
-    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript" src="js/src/utils/OSUtils.js"></script>
+    <script type="text/javascript" src="js/src/utils/SettingsUtils.js"></script>
+    <script type="text/javascript" src="js/src/utils/RandomUtils.js"></script>
+    <script type="text/javascript" src="js/src/utils/LocalStorageUtils.js"></script>
+    <script type="text/javascript" src="js/src/Observable.js"></script>
+
+    <script type="text/javascript" src="js/src/view/components/Lock.js"></script>
+    <script type="text/javascript" src="js/src/view/components/InputNumber.js"></script>
+    <script type="text/javascript" src="js/src/view/components/InputSelect.js"></script>
+    <script type="text/javascript" src="js/src/view/components/InputInterval.js"></script>
+    <script type="text/javascript" src="js/src/view/components/InputDynamic.js"></script>
+    <script type="text/javascript" src="js/src/view/components/MessageBox.js"></script>
+    <script type="text/javascript" src="js/src/view/Settings.js"></script>
+
+
+    <script type="text/javascript" src="js/Game.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+
+
     <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
