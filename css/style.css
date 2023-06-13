@@ -1,7 +1,3 @@
-body {
-    background-color: #f8f9fa;
-}
-
 label {
     font-weight: bold;
 }
@@ -14,6 +10,6 @@ label {
     padding: 0;
 }
 
-#form-challenge-your-friends .share-code {
-    text-align: center;
+[data-bs-theme=light] div.vr {
+    color: var(--bs-secondary) !important
 }

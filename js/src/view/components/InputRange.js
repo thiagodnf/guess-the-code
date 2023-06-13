@@ -1,11 +1,11 @@
-class InputInterval extends Observable {
+class InputRange extends Observable {
 
     constructor($el) {
         super();
 
         this.$el = $el;
-        this.$min = new InputNumber($el.find("#interval-min"));
-        this.$max = new InputNumber($el.find("#interval-max"));
+        this.$min = new InputInteger($el.find("#interval-min"));
+        this.$max = new InputInteger($el.find("#interval-max"));
 
         const that = this;
 

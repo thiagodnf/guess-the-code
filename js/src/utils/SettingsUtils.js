@@ -1,27 +1,36 @@
 class SettingsUtils {
 
     static init() {
-        SettingsUtils.locale = "en_us";
+        SettingsUtils.theme = "light";
+        SettingsUtils.language = "en_us";
         SettingsUtils.size = 3;
         SettingsUtils.mode = "random";
-        SettingsUtils.manual = [0, 0, 0];
+        SettingsUtils.target = [0, 0, 0];
         SettingsUtils.interval = { min: 0, max: 9 };
     }
 
-    static get locale() {
-        return LocalStorageUtils.getObject("locale", "en_us");
+    static get theme() {
+        return LocalStorageUtils.getObject("theme", "light");
     }
 
-    static set locale(value) {
-        return LocalStorageUtils.setItem("locale", value);
+    static set theme(value) {
+        return LocalStorageUtils.setItem("theme", value);
     }
 
-    static get manual() {
-        return LocalStorageUtils.getObject("manual", []);
+    static get language() {
+        return LocalStorageUtils.getObject("language", "en_us");
     }
 
-    static set manual(value) {
-        return LocalStorageUtils.setItem("manual", value);
+    static set language(value) {
+        return LocalStorageUtils.setItem("language", value);
+    }
+
+    static get target() {
+        return LocalStorageUtils.getObject("target", []);
+    }
+
+    static set target(value) {
+        return LocalStorageUtils.setItem("target", value);
     }
 
     static get mode() {

@@ -5,21 +5,22 @@ class Settings extends Observable {
 
         this.$el = $el;
 
-        this.$sizeInputNumber = new InputNumber(this.$el.find("#size"));
-        this.$modeInputSelect = new InputSelect(this.$el.find("#mode"));
-        this.$intervalInputInterval = new InputInterval(this.$el.find("#interval"));
-        this.$manualsInputDynamic = new InputDynamic(this.$el.find("#manuals"));
+        this.$language = new InputSelect(this.$el.find("#language"));
+        this.$size = new InputInteger(this.$el.find("#size"));
+        this.$mode = new InputSelect(this.$el.find("#mode"));
+        this.$interval = new InputRange(this.$el.find("#interval"));
+        this.$target = new InputDynamic(this.$el.find("#manuals"));
 
         const that = this;
 
-        this.$sizeInputNumber.on("change", function (size) {
+        this.$size.on("change", function (size) {
 
             SettingsUtils.size = size;
 
-            that.$manualsInputDynamic.value = Array(size).fill(0);
+            that.$target.value = Array(size).fill(0);
         });
 
-        this.$modeInputSelect.on("change", function (mode) {
+        this.$mode.on("change", function (mode) {
 
             SettingsUtils.mode = mode;
 
@@ -32,32 +33,51 @@ class Settings extends Observable {
             };
         });
 
-        this.$intervalInputInterval.on("change", function (min, max) {
+        this.$interval.on("change", function (min, max) {
 
             SettingsUtils.interval = { min, max };
         });
 
-        this.$manualsInputDynamic.on("change", function (values) {
+        this.$target.on("change", function (values) {
 
-            SettingsUtils.manual = values;
+            SettingsUtils.target = values;
         });
 
         this.$el.find("#save").click(function () {
 
             if (SettingsUtils.mode === "manual") {
-                SettingsUtils.interval = { min: 0, max: Math.max(...SettingsUtils.manual) };
+                SettingsUtils.interval = { min: 0, max: Math.max(...SettingsUtils.target) };
             }
 
             that.trigger("save");
+        });
+
+        this.$language.on("change", function (language) {
+
+            SettingsUtils.language = language;
+
+            console.log("Changing language to", language);
+
+            if (language === "ar") {
+                $("html[lang=en]").attr("dir", "rtl");
+            } else {
+                $("html[lang=en]").attr("dir", "ltr");
+            }
+
+            // Define the current language
+            $.i18n().locale = language;
+            // Change all text on the webpage
+            $("body").i18n();
         });
     }
 
     load() {
 
-        this.$sizeInputNumber.value = SettingsUtils.size;
-        this.$modeInputSelect.value = SettingsUtils.mode;
-        this.$intervalInputInterval.value = SettingsUtils.interval;
-        this.$manualsInputDynamic.value = SettingsUtils.manual;
+        this.$size.value = SettingsUtils.size;
+        this.$mode.value = SettingsUtils.mode;
+        this.$interval.value = SettingsUtils.interval;
+        this.$target.value = SettingsUtils.target;
+        this.$language.value = SettingsUtils.language;
 
         this.$el.find("input").first().focus();
     }

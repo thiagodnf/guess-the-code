@@ -31,7 +31,7 @@ class InputDynamic extends Observable {
 
         this.$el.find("input").each(function () {
 
-            let $input = new InputNumber($(this));
+            let $input = new InputInteger($(this));
 
             $input.on("change", function () {
                 that.trigger("change", that.value);

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" data-bs-theme="light">
 
 <head>
     <meta charset="utf-8">
@@ -35,36 +35,38 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto "></ul>
-                <!-- <ul class="navbar-nav me-auto ">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
-                            Dropdown
+                <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
+                    <li class="nav-item">
+                        <a class="nav-link " href="#" id="btn-settings">
+                            <i class="fa-regular fa-gear me-2"></i><span data-i18n="settings">Settings</span>
                         </a>
+                    </li>
+                    <li class="nav-item py-2 py-md-1 col-12 col-md-auto">
+                        <div class="vr d-none d-md-flex h-100 mx-md-2 text-white"></div>
+                        <hr class="d-md-none my-2 text-white">
+                    </li>
+                    <li class="nav-item dropdown mt-1" id="light-dark-mode">
+                        <button class="btn btn-link nav-link dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" data-bs-toggle="dropdown" data-bs-display="static">
+                            <i class="fa-regular fa-sun"></i>
+                        </button>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <li>
-                                <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light">
-                                    <i class="fas fa-lock me-2"></i>Light
+                                <button type="button" class="dropdown-item d-flex align-items-center" data-value="light">
+                                    <i class="fa-regular fa-sun"></i>
+                                    <span class="ms-3 me-auto" data-i18n="light">Light</span>
+                                    <i class="fa-regular fa-check d-none"></i>
                                 </button>
                             </li>
                             <li>
-                                <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="dark">
-                                    <i class="fas fa-lock me-2"></i>Dark
+                                <button type="button" class="dropdown-item d-flex align-items-center" data-value="dark">
+                                    <i class="fa-regular fa-moon"></i>
+                                    <span class="ms-3 me-auto" data-i18n="dark">Dark</span>
+                                    <i class="fa-regular fa-check d-none"></i>
                                 </button>
                             </li>
                         </ul>
                     </li>
-                </ul> -->
-
-                <form class="d-flex">
-
-                    <button id="btn-settings" type="button" class="dropdown-item d-flex align-items-center active">
-                        <i class="fas fa-cog me-2"></i>Settings
-                    </button>
-                    <!-- <select id="select-language">
-                        <option value="en_us" data-icon="flag-icon flag-icon-us" data-i18n="en_us">en_us</option>
-                        <option value="pt_br" data-icon="flag-icon flag-icon-br" data-i18n="pt_br">pt_br</option>
-                    </select> -->
-                </form>
+                </ul>
             </div>
         </div>
     </nav>
@@ -76,9 +78,9 @@
             </div>
         </div>
         <div class="row text-center mb-2">
-            <p id="type-a-number">type-a-number</p>
+            <p id="type-a-number">Type a number</p>
         </div>
-        <div class="row mb-3">
+        <div class="row mb-4">
             <div id="numbers" class="d-flex flex-nowrap overflow-auto"></div>
         </div>
         <div class="row">
@@ -87,7 +89,7 @@
                     <button class="btn btn-success btn-lg" id="btn-unlock" tabindex="4" data-i18n="unlock">unlock</button>
                     <button class="btn btn-primary btn-lg" id="btn-restart" tabindex="5" data-i18n="restart-game">Restart Game</button>
                 </div>
-                <div id="message-box" class="alert text-center"></div>
+                <div id="message-box"></div>
             </div>
         </div>
     </div>
@@ -97,43 +99,53 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Welcome</h5>
+                    <h5 class="modal-title" data-i18n="welcome">Welcome</h5>
                 </div>
                 <form>
                     <div class="modal-body container">
                         <div class="row mb-3">
-                            <label for="size" class="col-form-label col-6 col-md-4">Size</label>
-                            <div class="col-6 col-md-8 d-flex align-items-center justify-content-end">
+                            <label for="language" class="col-form-label col-6 col-md-7" data-i18n="language">Language</label>
+                            <div class="col-6 col-md-5 d-flex align-items-center justify-content-end">
+                                <select class="form-select" id="language">
+                                    <option value="en_us" data-i18n="en_us" selected>English</option>
+                                    <option value="pt_br" data-i18n="pt_br">Portuguese</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="size" class="col-form-label col-6 col-md-7" data-i18n="size">Size</label>
+                            <div class="col-6 col-md-5 d-flex align-items-center justify-content-end">
                                 <input type="number" class="form-control" autofocus id="size" placeholder="Size" min="3" max="10" step="1" value="3" autocomplete="off" inputmode="decimal">
                             </div>
                         </div>
                         <div class="row mb-3">
-                            <label for="mode" class="col-form-label col-6 col-md-4">Mode</label>
-                            <div class="col-6 col-md-8 d-flex align-items-center justify-content-end">
+                            <label for="mode" class="col-form-label col-6 col-md-7" data-i18n="mode">Mode</label>
+                            <div class="col-6 col-md-5 d-flex align-items-center justify-content-end">
                                 <select class="form-select" id="mode">
-                                    <option value="random" selected>Random</option>
-                                    <option value="manual">Manual</option>
+                                    <option value="random" data-i18n="random" selected>Random</option>
+                                    <option value="manual" data-i18n="manual">Manual</option>
                                 </select>
                             </div>
                         </div>
                         <hr />
                         <div class="row d-none" id="mode-manual">
-                            <label for="manual" class="form-label">Numbers</label>
-                            <div id="manuals" class="d-flex align-items-center justify-content-end d-grid"></div>
+                            <label for="manual" class="form-label" data-i18n="target">Target</label>
+                            <div id="manuals" class="d-flex align-items-center justify-content-end"></div>
                         </div>
                         <div class="row" id="mode-random">
-                            <label for="interval-min" class="form-label">Interval</label>
+                            <label for="interval-min" class="form-label" data-i18n="interval">Interval</label>
                             <div class="d-flex align-items-center justify-content-end">
                                 <div class="input-group" id="interval">
                                     <input type="number" class="form-control" id="interval-min" placeholder="Min" min="0" max="99" step="1" autocomplete="off" inputmode="decimal">
-                                    <span class="input-group-text">to</span>
+                                    <span class="input-group-text" data-i18n="to">to</span>
                                     <input type="number" class="form-control" id="interval-max" placeholder="Max" min="0" max="99" step="1" autocomplete="off" inputmode="decimal">
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button id="save" type="button" class="btn btn-primary">Save</button>
+                        <button id="save" type="button" class="btn btn-primary" data-i18n="restart">Restart</button>
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" data-i18n="cancel">Cancel</button>
                     </div>
                 </form>
             </div>
@@ -175,11 +187,12 @@
     <script type="text/javascript" src="js/src/Observable.js"></script>
 
     <script type="text/javascript" src="js/src/view/components/Lock.js"></script>
-    <script type="text/javascript" src="js/src/view/components/InputNumber.js"></script>
+    <script type="text/javascript" src="js/src/view/components/InputInteger.js"></script>
     <script type="text/javascript" src="js/src/view/components/InputSelect.js"></script>
-    <script type="text/javascript" src="js/src/view/components/InputInterval.js"></script>
+    <script type="text/javascript" src="js/src/view/components/InputRange.js"></script>
     <script type="text/javascript" src="js/src/view/components/InputDynamic.js"></script>
     <script type="text/javascript" src="js/src/view/components/MessageBox.js"></script>
+    <script type="text/javascript" src="js/src/view/components/DropDownMenu.js"></script>
     <script type="text/javascript" src="js/src/view/Settings.js"></script>
 
 

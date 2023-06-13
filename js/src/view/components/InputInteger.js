@@ -1,4 +1,4 @@
-class InputNumber extends Observable {
+class InputInteger extends Observable {
 
     constructor($el) {
         super();

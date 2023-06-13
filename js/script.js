@@ -5,33 +5,7 @@ let $modalSettings = null;
 let $settings = null;
 let $lock = null;
 let $messageBox = null;
-
-// function getCurrentLanguage() {
-//     return SettingsUtils.locale.getItem("gtc-locale") || "en_us";
-// }
-
-function changeLanguageTo(locale) {
-
-    console.log("Changing language to", locale);
-
-    if (locale === "ar") {
-        $("html[lang=en]").attr("dir", "rtl");
-    } else {
-        $("html[lang=en]").attr("dir", "ltr");
-    }
-
-    // Define the current language
-    $.i18n().locale = locale;
-    // Change all text on the webpage
-    $("body").i18n();
-    // Save the current locate on the locale storage to reload
-    SettingsUtils.locale = locale;
-    // We need to refresh the bootstrap-select
-    // $("#select-language").selectpicker("destroy");
-    // $("#select-language").selectpicker("render");
-    //
-    $("#numbers").find(".number").first().focus();
-}
+let $lightDarkMode = null;
 
 function getNumbers($container = $(".number")) {
 
@@ -72,8 +46,10 @@ function restartGame() {
     if (SettingsUtils.mode === "random") {
         target = RandomUtils.nextCode(size, interval);
     } else {
-        target = SettingsUtils.manual;
+        target = SettingsUtils.target;
     }
+
+    SettingsUtils.target = target;
 
     $lock.close();
     $messageBox.empty();
@@ -95,7 +71,7 @@ function restartGame() {
     }
 
     $el.find("input").each(function () {
-        new InputNumber($(this));
+        new InputInteger($(this));
     });
 
     $el.find(".number").first().focus();
@@ -122,6 +98,10 @@ $(function () {
 
     $(window).resize(resizeWindow).trigger("resize");
 
+    if (!LocalStorageUtils.exists("size")) {
+        SettingsUtils.init();
+    }
+
     $.i18n.debug = true;
 
     $.i18n().load({
@@ -129,24 +109,10 @@ $(function () {
         pt_br: "i18n/pt_br.json",
     }).done(function () {
 
-        if (!LocalStorageUtils.exists("is-first-time")) {
-
-            LocalStorageUtils.setItem("is-first-time", "nope");
-
-            SettingsUtils.init();
-        }
-
-        changeLanguageTo(SettingsUtils.locale);
+        $settings.load();
 
         restartGame();
     });
-
-    // $("#select-language").selectpicker({
-    //     dropdownAlignRight: true
-    // }).change(function (event) {
-    //     event.preventDefault();
-    //     changeLanguageTo($(this).val());
-    // }).selectpicker("val", SettingsUtils.locale);
 
     $("#btn-restart").click(function (event) {
         event.preventDefault();
@@ -167,6 +133,16 @@ $(function () {
     $settings = new Settings($modalSettings.find("form"));
     $lock = new Lock($(".lock"));
     $messageBox = new MessageBox($("#message-box"));
+    $lightDarkMode = new DropDownMenu($("#light-dark-mode"));
+
+    $lightDarkMode.on("change", function (theme) {
+
+        SettingsUtils.theme = theme;
+
+        $("html").attr("data-bs-theme", theme);
+    });
+
+    $lightDarkMode.value = SettingsUtils.theme;
 
     $settings.on("save", function () {
         $modalSettings.modal("hide");
