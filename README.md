@@ -12,7 +12,7 @@ Try to guess the code for unlocking the padlock
 
 ## Questions or Suggestions
 
-Feel free to create <a href="./issues">issues</a> here as you need
+Feel free to create <a href="https://github.com/thiagodnf/guess-the-code/issues">issues</a> here as you need
 
 ## Contribute
 
@@ -22,7 +22,7 @@ Contributions to this project are very welcome! We can't do this alone! Feel fre
 
 * **Thiago Ferreira** - *Initial work*
 
-See also the list of [contributors](./graphs/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/thiagodnf/guess-the-code/graphs/contributors) who participated in this project.
 
 ## License
 
