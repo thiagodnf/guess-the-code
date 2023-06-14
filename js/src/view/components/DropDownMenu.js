@@ -4,6 +4,7 @@ class DropDownMenu extends Observable {
         super();
 
         const that = this;
+
         this.$el = $el;
 
         this.$options = $el.find("[data-value]");
@@ -37,7 +38,7 @@ class DropDownMenu extends Observable {
         $dropDownToggle.append($dropdownItemSelected.find("i").first().prop("outerHTML"));
     }
 
-    set value(selected){
+    set value(selected) {
 
         this.setSelected(selected);
 

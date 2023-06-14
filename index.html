@@ -49,18 +49,25 @@
                         <button class="btn btn-link nav-link dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" data-bs-toggle="dropdown" data-bs-display="static">
                             <i class="fa-regular fa-sun"></i>
                         </button>
-                        <ul class="dropdown-menu dropdown-menu-end">
+                        <ul class="dropdown-menu dropdown-menu-end p-1">
                             <li>
-                                <button type="button" class="dropdown-item d-flex align-items-center" data-value="light">
+                                <button type="button" class="dropdown-item d-flex align-items-center rounded" data-value="light">
                                     <i class="fa-regular fa-sun"></i>
                                     <span class="ms-3 me-auto" data-i18n="light">Light</span>
                                     <i class="fa-regular fa-check d-none"></i>
                                 </button>
                             </li>
                             <li>
-                                <button type="button" class="dropdown-item d-flex align-items-center" data-value="dark">
+                                <button type="button" class="dropdown-item d-flex align-items-center rounded" data-value="dark">
                                     <i class="fa-regular fa-moon"></i>
                                     <span class="ms-3 me-auto" data-i18n="dark">Dark</span>
+                                    <i class="fa-regular fa-check d-none"></i>
+                                </button>
+                            </li>
+                            <li>
+                                <button type="button" class="dropdown-item d-flex align-items-center rounded" data-value="auto">
+                                    <i class="fa-regular fa-circle-half-stroke"></i>
+                                    <span class="ms-3 me-auto" data-i18n="auto">Auto</span>
                                     <i class="fa-regular fa-check d-none"></i>
                                 </button>
                             </li>
@@ -98,7 +105,7 @@
     <div class="modal" id="modal-settings" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header bg-body-tertiary">
                     <h5 class="modal-title" data-i18n="welcome">Welcome</h5>
                 </div>
                 <form>

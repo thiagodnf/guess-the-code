@@ -15,14 +15,10 @@ class Settings extends Observable {
 
         this.$size.on("change", function (size) {
 
-            SettingsUtils.size = size;
-
             that.$target.value = Array(size).fill(0);
         });
 
         this.$mode.on("change", function (mode) {
-
-            SettingsUtils.mode = mode;
 
             if (mode == "random") {
                 that.$el.find("#mode-random").removeClass("d-none");
@@ -33,17 +29,13 @@ class Settings extends Observable {
             };
         });
 
-        this.$interval.on("change", function (min, max) {
-
-            SettingsUtils.interval = { min, max };
-        });
-
-        this.$target.on("change", function (values) {
-
-            SettingsUtils.target = values;
-        });
-
         this.$el.find("#save").click(function () {
+
+            SettingsUtils.size = that.$size.value;
+            SettingsUtils.mode = that.$mode.value;
+            SettingsUtils.interval = that.$interval.value;
+            SettingsUtils.language = that.$language.value;
+            SettingsUtils.target = that.$target.value;
 
             if (SettingsUtils.mode === "manual") {
                 SettingsUtils.interval = { min: 0, max: Math.max(...SettingsUtils.target) };
@@ -52,23 +44,23 @@ class Settings extends Observable {
             that.trigger("save");
         });
 
-        this.$language.on("change", function (language) {
+        // this.$language.on("change", function (language) {
 
-            SettingsUtils.language = language;
+        //     // SettingsUtils.language = language;
 
-            console.log("Changing language to", language);
+        //     console.log("Changing language to", language);
 
-            if (language === "ar") {
-                $("html[lang=en]").attr("dir", "rtl");
-            } else {
-                $("html[lang=en]").attr("dir", "ltr");
-            }
+        //     if (language === "ar") {
+        //         $("html[lang=en]").attr("dir", "rtl");
+        //     } else {
+        //         $("html[lang=en]").attr("dir", "ltr");
+        //     }
 
-            // Define the current language
-            $.i18n().locale = language;
-            // Change all text on the webpage
-            $("body").i18n();
-        });
+        //     // Define the current language
+        //     $.i18n().locale = language;
+        //     // Change all text on the webpage
+        //     $("body").i18n();
+        // });
     }
 
     load() {
@@ -76,8 +68,8 @@ class Settings extends Observable {
         this.$size.value = SettingsUtils.size;
         this.$mode.value = SettingsUtils.mode;
         this.$interval.value = SettingsUtils.interval;
-        this.$target.value = SettingsUtils.target;
         this.$language.value = SettingsUtils.language;
+        this.$target.value = Array(SettingsUtils.size).fill(0);
 
         this.$el.find("input").first().focus();
     }

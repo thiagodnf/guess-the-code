@@ -19,6 +19,10 @@ class InputSelect extends Observable {
         this.trigger("change", mode);
     }
 
+    get value() {
+        return this.$el.find("option:selected").val();
+    }
+
     set value(val) {
         this.$el.find(`option[value=${val}]`).prop("selected", true).trigger("change");
     }

@@ -21,12 +21,13 @@
     "cancel": "Cancel",
     "light": "Light",
     "dark": "Dark",
+    "auto": "Auto",
     "to": "To",
     "end-game": "Congratulations! You guessed the code in $1 guesses!",
     "valid.numbers.in.correct.places": "$1 valid number(s) in a correct place",
     "valid.numbers.in.wrong.places": "$1 valid number(s) in a wrong place",
     "everything.is.wrong": "Everthing is wrong",
     "language": "Language",
-    "en_us": "English (United States)",
+    "en_us": "English (USA)",
     "pt_br": "Portuguese (Brazil)"
 }

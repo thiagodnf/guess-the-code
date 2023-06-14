@@ -1,7 +1,7 @@
 class SettingsUtils {
 
     static init() {
-        SettingsUtils.theme = "light";
+        SettingsUtils.theme = "auto";
         SettingsUtils.language = "en_us";
         SettingsUtils.size = 3;
         SettingsUtils.mode = "random";

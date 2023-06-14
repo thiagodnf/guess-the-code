@@ -7,6 +7,22 @@ let $lock = null;
 let $messageBox = null;
 let $lightDarkMode = null;
 
+function changeLanguageTo(language) {
+
+    console.log("Changing language to", language);
+
+    if (language === "ar") {
+        $("html[lang=en]").attr("dir", "rtl");
+    } else {
+        $("html[lang=en]").attr("dir", "ltr");
+    }
+
+    // Define the current language
+    $.i18n().locale = language;
+    // Change all text on the webpage
+    $("body").i18n();
+}
+
 function getNumbers($container = $(".number")) {
 
     return $container.map(function () {
@@ -81,6 +97,10 @@ function setNumbersEnabled(enabled = true) {
     $("#numbers .number").prop("disabled", enabled);
 }
 
+function setColorTheme(colorTheme) {
+    $("html").attr("data-bs-theme", colorTheme);
+}
+
 function setUnlockButtonVisible(visible) {
 
     if (visible) {
@@ -90,6 +110,10 @@ function setUnlockButtonVisible(visible) {
         $("#btn-unlock").addClass("d-none");
         $("#btn-restart").removeClass("d-none");
     }
+}
+
+function getSystemColorTheme() {
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 
 $(function () {
@@ -110,6 +134,8 @@ $(function () {
     }).done(function () {
 
         $settings.load();
+
+        changeLanguageTo(SettingsUtils.language);
 
         restartGame();
     });
@@ -139,13 +165,22 @@ $(function () {
 
         SettingsUtils.theme = theme;
 
-        $("html").attr("data-bs-theme", theme);
+        if (SettingsUtils.theme === "auto") {
+            setColorTheme(getSystemColorTheme());
+        } else {
+            setColorTheme(theme);
+        }
     });
 
     $lightDarkMode.value = SettingsUtils.theme;
 
+    if (SettingsUtils.theme === "auto") {
+        setColorTheme(getSystemColorTheme());
+    }
+
     $settings.on("save", function () {
         $modalSettings.modal("hide");
+        changeLanguageTo(SettingsUtils.language);
         restartGame();
     });
 
@@ -178,5 +213,12 @@ $(function () {
         }
 
         return false;
+    });
+
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", event => {
+
+        if (SettingsUtils.theme === "auto") {
+            setColorTheme(getSystemColorTheme());
+        }
     });
 });
