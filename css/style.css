@@ -13,3 +13,7 @@ label {
 [data-bs-theme=light] div.vr {
     color: var(--bs-secondary) !important
 }
+
+.dropdown-toggle::after {
+    color: var(--bs-body-color) !important
+}
