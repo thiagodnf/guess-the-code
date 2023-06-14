@@ -16,6 +16,7 @@
     <!-- Vendors -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 
     <!-- Custom -->
@@ -27,7 +28,7 @@
     <nav class="navbar navbar-expand-md bg-body-tertiary mb-5">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Guess the Code</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -35,37 +36,37 @@
                 <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
                     <li class="nav-item">
                         <a class="nav-link " href="#" id="btn-settings">
-                            <i class="fa-regular fa-gear me-2"></i><span data-i18n="settings">Settings</span>
+                            <i class="bi bi-gear me-2"></i><span data-i18n="settings">Settings</span>
                         </a>
                     </li>
                     <li class="nav-item py-2 py-md-1 col-12 col-md-auto">
                         <div class="vr d-none d-md-flex h-100 mx-md-2 text-white"></div>
                         <hr class="d-md-none my-2 text-white">
                     </li>
-                    <li class="nav-item dropdown mt-1" id="light-dark-mode">
-                        <button class="btn btn-link nav-link dropdown-toggle d-flex align-items-center" id="bd-theme" type="button" data-bs-toggle="dropdown" data-bs-display="static">
+                    <li class="nav-item dropdown " id="light-dark-mode">
+                        <button class="btn btn-link nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown" data-bs-display="static">
                             <i class="fa-regular fa-sun"></i>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end p-1">
                             <li>
                                 <button type="button" class="dropdown-item d-flex align-items-center rounded" data-value="light">
-                                    <i class="fa-regular fa-sun"></i>
+                                    <i class="bi bi-sun-fill"></i>
                                     <span class="ms-3 me-auto" data-i18n="light">Light</span>
-                                    <i class="fa-regular fa-check d-none"></i>
+                                    <i class="bi bi-check2 d-none"></i>
                                 </button>
                             </li>
                             <li>
                                 <button type="button" class="dropdown-item d-flex align-items-center rounded" data-value="dark">
-                                    <i class="fa-regular fa-moon"></i>
+                                    <i class="bi bi-moon-stars-fill"></i>
                                     <span class="ms-3 me-auto" data-i18n="dark">Dark</span>
-                                    <i class="fa-regular fa-check d-none"></i>
+                                    <i class="bi bi-check2 d-none"></i>
                                 </button>
                             </li>
                             <li>
                                 <button type="button" class="dropdown-item d-flex align-items-center rounded" data-value="auto">
-                                    <i class="fa-regular fa-circle-half-stroke"></i>
+                                    <i class="bi bi-circle-half"></i>
                                     <span class="ms-3 me-auto" data-i18n="auto">Auto</span>
-                                    <i class="fa-regular fa-check d-none"></i>
+                                    <i class="bi bi-check2 d-none"></i>
                                 </button>
                             </li>
                         </ul>
@@ -103,7 +104,9 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header bg-body-tertiary">
-                    <h5 class="modal-title" data-i18n="welcome">Welcome</h5>
+                    <h5 class="modal-title">
+                        <i class="bi bi-gear me-2"></i><span data-i18n="settings">Settings</span>
+                    </h5>
                 </div>
                 <form>
                     <div class="modal-body container">

@@ -29,10 +29,10 @@ class DropDownMenu extends Observable {
         const $allDropdownItems = this.$el.find(".dropdown-item");
         const $dropdownItemSelected = this.$el.find(`[data-value=${value}]`);
 
-        $allDropdownItems.removeClass("active").find(".fa-check").addClass("d-none");
+        $allDropdownItems.removeClass("active").find(".bi-check2").addClass("d-none");
 
         $dropdownItemSelected.addClass("active");
-        $dropdownItemSelected.find(".fa-check").removeClass("d-none");
+        $dropdownItemSelected.find(".bi-check2").removeClass("d-none");
 
         $dropDownToggle.find("i").remove();
         $dropDownToggle.append($dropdownItemSelected.find("i").first().prop("outerHTML"));
