@@ -13,6 +13,11 @@
     <meta name="keywords" content="guess the code, adivinhe o codigo, cadeado">
     <meta name="robots" content="index, follow">
 
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="images/favicon/site.webmanifest">
+
     <!-- Vendors -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
@@ -196,8 +201,16 @@
     <script type="text/javascript" src="src/game/Game.js"></script>
     <script type="text/javascript" src="src/script.js"></script>
 
+    <script>
 
-    <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+        const server = (location.host || 'localhost');
+
+        const host = server.split(':')[0];
+
+        if (host === "localhost") {
+            document.write(`<script src="http://${host}:35729/livereload.js?snipver=1"><\/script>`);
+        }
+    </script>
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-118153284-3"></script>
