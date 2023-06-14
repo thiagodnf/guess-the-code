@@ -34,8 +34,7 @@ class DropDownMenu extends Observable {
         $dropdownItemSelected.addClass("active");
         $dropdownItemSelected.find(".bi-check2").removeClass("d-none");
 
-        $dropDownToggle.find("i").remove();
-        $dropDownToggle.append($dropdownItemSelected.find("i").first().prop("outerHTML"));
+        $dropDownToggle.find("i").attr("class", $dropdownItemSelected.find("i").first().attr("class"));
     }
 
     set value(selected) {

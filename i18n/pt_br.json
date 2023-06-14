@@ -23,6 +23,7 @@
     "dark": "Escuro",
     "auto": "Auto",
     "to": "Até",
+    "color-theme": "Tema",
     "end-game": "Parabéns! Você adivinhou o código em $1 tentativas!",
     "valid.numbers.in.correct.places": "$1 número(s) válido(s) no lugar certo",
     "valid.numbers.in.wrong.places": "$1 número(s) válido(s), mas no lugar errado",
