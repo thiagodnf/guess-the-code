@@ -10,6 +10,9 @@ Try to guess the code for unlocking the padlock
 
 ## Screenshots
 
+<img width="737" src="https://github.com/thiagodnf/guess-the-code/assets/114015/72c00a57-9b91-4476-b92f-024c9e5f6786">
+<img width="737" src="https://github.com/thiagodnf/guess-the-code/assets/114015/3fd97d00-5753-4e4b-ba4e-b8293a702b14">
+
 ## Questions or Suggestions
 
 Feel free to create <a href="https://github.com/thiagodnf/guess-the-code/issues">issues</a> here as you need
