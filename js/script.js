@@ -209,6 +209,7 @@ $(function () {
             }
 
         } catch (error) {
+            $lock.shake();
             $messageBox.error($.i18n(error.message));
         }
 
