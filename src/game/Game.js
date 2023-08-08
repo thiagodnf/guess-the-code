@@ -6,7 +6,7 @@ class Game {
         this.min = min;
         this.max = max;
 
-        console.log("Target: ", target);
+        // console.log("Target: ", target);
     }
 
     length() {

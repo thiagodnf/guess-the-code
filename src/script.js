@@ -239,7 +239,7 @@ $(function () {
                 $lock.shake();
                 $messageBox.error($.i18n(result.message, result.valids));
                 playAudio($audio.WRONG);
-                $("#numbers").find(".number").first().focus();
+                $("#numbers").find(".number").first().focus().select();
             }
 
         } catch (error) {
@@ -254,6 +254,19 @@ $(function () {
 
         if (SettingsUtils.theme === "auto") {
             setColorTheme(getSystemColorTheme());
+        }
+    });
+
+    $(document).on("keypress", "#numbers .number", function (e) {
+        if (e.which == 13) {
+
+            const next = $(e.target).next();
+
+            if (next.length !== 0) {
+                next.focus().select();
+            } else {
+                $("#btn-unlock").trigger("click");
+            }
         }
     });
 });
