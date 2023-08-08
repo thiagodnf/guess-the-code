@@ -150,14 +150,14 @@ function playAudioEffect(audio) {
 
 function showConfetti() {
 
-    if (!SettingsUtils.confetti) {
+    if (!SettingsUtils.showConfetti) {
         return;
     }
 
     confetti({
-        particleCount: 100,
+        particleCount: 300,
         spread: 70,
-        origin: { y: 0.2 },
+        origin: { y: 0.3 },
     });
 }
 
