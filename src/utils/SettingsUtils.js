@@ -1,12 +1,24 @@
 class SettingsUtils {
 
     static init() {
+
+        console.log("Initialing Settings");
+
         SettingsUtils.theme = "auto";
         SettingsUtils.language = "en_us";
         SettingsUtils.size = 3;
         SettingsUtils.mode = "random";
         SettingsUtils.target = [0, 0, 0];
         SettingsUtils.interval = { min: 0, max: 9 };
+        SettingsUtils.audio = true;
+    }
+
+    static get audio() {
+        return LocalStorageUtils.getObject("audio", true);
+    }
+
+    static set audio(value) {
+        return LocalStorageUtils.setItem("audio", value);
     }
 
     static get theme() {

@@ -140,6 +140,14 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="row mb-3">
+                            <label for="audio" class="col-form-label form-check-label col-6 col-md-7" data-i18n="audio">Audio</label>
+                            <div class="col-6 col-md-5 d-flex align-items-center justify-content-end">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" id="audio" checked>
+                                </div>
+                            </div>
+                        </div>
                         <hr />
                         <div class="row d-none" id="mode-manual">
                             <label for="manual" class="form-label" data-i18n="target">Target</label>
@@ -182,6 +190,8 @@
 
     <script src="https://chancejs.com/chance.min.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.min.js" integrity="sha512-6+YN/9o9BWrk6wSfGxQGpt3EUK6XeHi6yeHV+TYD2GR0Sj/cggRpXr1BrAQf0as6XslxomMUxXp2vIl+fv0QRA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <!-- Custom -->
     <script type="text/javascript" src="src/utils/OSUtils.js"></script>
     <script type="text/javascript" src="src/utils/SettingsUtils.js"></script>
@@ -193,6 +203,7 @@
     <script type="text/javascript" src="src/view/components/InputInteger.js"></script>
     <script type="text/javascript" src="src/view/components/InputSelect.js"></script>
     <script type="text/javascript" src="src/view/components/InputRange.js"></script>
+    <script type="text/javascript" src="src/view/components/InputSwitch.js"></script>
     <script type="text/javascript" src="src/view/components/InputDynamic.js"></script>
     <script type="text/javascript" src="src/view/components/MessageBox.js"></script>
     <script type="text/javascript" src="src/view/components/DropDownMenu.js"></script>

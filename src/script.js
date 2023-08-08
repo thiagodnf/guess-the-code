@@ -6,6 +6,10 @@ let $settings = null;
 let $lock = null;
 let $messageBox = null;
 let $lightDarkMode = null;
+let $audio = {
+    WINNER: null,
+    WRONG: null
+};
 
 function changeLanguageTo(language) {
 
@@ -116,7 +120,35 @@ function getSystemColorTheme() {
     return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 
+function loadAudio(files = []) {
+
+    let sound = new Howl({
+        src: files,
+        volume: 0.5,
+        html5: true
+    });
+
+    // Fires when the sound finishes playing.
+    sound.on("end", function () {
+        console.log("Finished!");
+    });
+
+    return sound;
+}
+
+function playAudio(audio) {
+
+    if (!SettingsUtils.audio) {
+        return;
+    }
+
+    audio.play();
+}
+
 $(function () {
+
+    $audio.WRONG = loadAudio("audio/wrong.mp3");
+    $audio.WINNER = loadAudio("audio/winner.mp3");
 
     $modalSettings = $("#modal-settings");
 
@@ -201,10 +233,12 @@ $(function () {
                 $lock.open();
                 $messageBox.success($.i18n(result.message, result.attempts));
                 setNumbersEnabled(false);
+                playAudio($audio.WINNER);
                 setUnlockButtonVisible(false);
             } else {
                 $lock.shake();
                 $messageBox.error($.i18n(result.message, result.valids));
+                playAudio($audio.WRONG);
                 $("#numbers").find(".number").first().focus();
             }
 

@@ -23,6 +23,7 @@
     "dark": "Dark",
     "auto": "Auto",
     "to": "To",
+    "audio": "Audio",
     "color-theme": "Color Theme",
     "end-game": "Congratulations! You guessed the code in $1 guesses!",
     "valid.numbers.in.correct.places": "$1 valid number(s) in a correct place",
