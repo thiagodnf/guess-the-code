@@ -6,7 +6,7 @@ class Game {
         this.min = min;
         this.max = max;
 
-        console.log("Target: ", target);
+        // console.log("Target: ", target);
     }
 
     length() {
@@ -52,13 +52,13 @@ class Game {
         this.attempts++;
 
         if (numbers.length !== this.target.length) {
-            return "code.has.different.length";
+            return { attempts: this.attempts, valids: 0, corrects: 0, message: "code.has.different.length" };
         }
 
         if (!SettingsUtils.repetition) {
 
-            if (new Set(numbers).size !== arraySize) {
-                return "invalid.repeated.numbers";
+            if (new Set(numbers).size !== numbers.length) {
+                return { attempts: this.attempts, valids: 0, corrects: 0, message: "invalid.repeated.numbers" };
             }
         }
 
