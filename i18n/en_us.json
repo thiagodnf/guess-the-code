@@ -26,7 +26,7 @@
     "audio": "Audio",
     "repetition": "Repetition",
     "color-theme": "Color Theme",
-    "invalid.repeated.numbers": "Repeated numbers not allowed",
+    "invalid.repeated.numbers": "Repeated numbers are not allowed",
     "end-game": "Congratulations! You guessed the code in $1 guesses!",
     "valid.numbers.in.correct.places": "$1 valid number(s) in a correct place",
     "valid.numbers.in.wrong.places": "$1 valid number(s) in a wrong place",

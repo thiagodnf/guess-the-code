@@ -26,7 +26,7 @@
     "audio": "Audio",
     "repetition": "Repetição",
     "color-theme": "Tema",
-    "invalid.repeated.numbers": "Números repetidos não permitido",
+    "invalid.repeated.numbers": "Números repetidos não são permitidos",
     "end-game": "Parabéns! Você adivinhou o código em $1 tentativas!",
     "valid.numbers.in.correct.places": "$1 número(s) válido(s) no lugar certo",
     "valid.numbers.in.wrong.places": "$1 número(s) válido(s), mas no lugar errado",
