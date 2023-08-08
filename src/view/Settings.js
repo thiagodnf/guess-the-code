@@ -17,7 +17,7 @@ class Settings extends Observable {
 
         this.$size.on("change", function (size) {
 
-            that.$target.value = size;
+            that.$target.value = Array(size).fill(0);
         });
 
         this.$mode.on("change", function (mode) {
