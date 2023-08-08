@@ -139,13 +139,26 @@ function loadAudio(files = []) {
     return sound;
 }
 
-function playAudio(audio) {
+function playAudioEffect(audio) {
 
     if (!SettingsUtils.audio) {
         return;
     }
 
     audio.play();
+}
+
+function showConfetti() {
+
+    if (!SettingsUtils.confetti) {
+        return;
+    }
+
+    confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.2 },
+    });
 }
 
 $(function () {
@@ -254,18 +267,20 @@ $(function () {
                 $lock.open();
                 $messageBox.success($.i18n(result.message, result.attempts));
                 setNumbersEnabled(false);
-                playAudio($audio.WINNER);
+                playAudioEffect($audio.WINNER);
+                showConfetti();
                 setUnlockButtonVisible(false);
             } else {
                 $lock.shake();
                 $messageBox.error($.i18n(result.message, result.valids));
-                playAudio($audio.WRONG);
+                playAudioEffect($audio.WRONG);
                 $("#numbers").find(".number").first().focus().select();
             }
 
         } catch (error) {
             $lock.shake();
             $messageBox.error($.i18n(error.message));
+            playAudioEffect($audio.WRONG);
         }
 
         return false;

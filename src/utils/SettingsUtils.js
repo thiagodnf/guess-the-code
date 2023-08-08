@@ -12,6 +12,15 @@ class SettingsUtils {
         SettingsUtils.interval = { min: 0, max: 9 };
         SettingsUtils.audio = true;
         SettingsUtils.repetition = false;
+        SettingsUtils.confetti = true;
+    }
+
+    static get confetti() {
+        return LocalStorageUtils.getObject("confetti", true);
+    }
+
+    static set confetti(value) {
+        return LocalStorageUtils.setItem("confetti", value);
     }
 
     static get repetition() {
