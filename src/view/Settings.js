@@ -31,14 +31,6 @@ class Settings extends Observable {
             };
         });
 
-        this.$audio.on("change", function (audio) {
-            SettingsUtils.audio = audio;
-        });
-
-        this.$repetition.on("change", function (repetition) {
-            SettingsUtils.repetition = repetition;
-        });
-
         this.$el.find("#save").click(function () {
 
             SettingsUtils.size = that.$size.value;
@@ -46,6 +38,8 @@ class Settings extends Observable {
             SettingsUtils.interval = that.$interval.value;
             SettingsUtils.language = that.$language.value;
             SettingsUtils.target = that.$target.value;
+            SettingsUtils.repetition = that.$repetition.value;
+            SettingsUtils.audio = that.$audio.value;
 
             if (SettingsUtils.mode === "manual") {
 
@@ -56,26 +50,6 @@ class Settings extends Observable {
 
             that.trigger("save");
         });
-
-
-
-        // this.$language.on("change", function (language) {
-
-        //     // SettingsUtils.language = language;
-
-        //     console.log("Changing language to", language);
-
-        //     if (language === "ar") {
-        //         $("html[lang=en]").attr("dir", "rtl");
-        //     } else {
-        //         $("html[lang=en]").attr("dir", "ltr");
-        //     }
-
-        //     // Define the current language
-        //     $.i18n().locale = language;
-        //     // Change all text on the webpage
-        //     $("body").i18n();
-        // });
     }
 
     load() {

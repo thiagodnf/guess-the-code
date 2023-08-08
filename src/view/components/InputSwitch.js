@@ -20,7 +20,7 @@ class InputSwitch extends Observable {
     }
 
     get value() {
-        return this.$el.is(":checked").val();
+        return this.$el.is(":checked");
     }
 
     set value(val) {
