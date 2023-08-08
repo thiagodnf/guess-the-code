@@ -48,7 +48,10 @@ class Settings extends Observable {
             SettingsUtils.target = that.$target.value;
 
             if (SettingsUtils.mode === "manual") {
-                SettingsUtils.interval = { min: 0, max: Math.max(...SettingsUtils.target) };
+
+                let max = Math.max(...SettingsUtils.target);
+
+                SettingsUtils.interval = { min: 0, max: Math.max(max, 9) };
             }
 
             that.trigger("save");
