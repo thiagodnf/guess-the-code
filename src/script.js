@@ -1,8 +1,11 @@
 let game = null;
 
 let $modalSettings = null;
+let $modalNewGame = null;
 
 let $settings = null;
+let $newGame = null;
+
 let $lock = null;
 let $messageBox = null;
 let $lightDarkMode = null;
@@ -151,6 +154,7 @@ $(function () {
     $audio.WINNER = loadAudio("audio/winner.mp3");
 
     $modalSettings = $("#modal-settings");
+    $modalNewGame = $("#modal-new-game");
 
     $(window).resize(resizeWindow).trigger("resize");
 
@@ -166,6 +170,7 @@ $(function () {
     }).done(function () {
 
         $settings.load();
+        $newGame.load();
 
         changeLanguageTo(SettingsUtils.language);
 
@@ -188,7 +193,17 @@ $(function () {
         return false;
     });
 
+    $("#btn-new-game").click(function (event) {
+        event.preventDefault();
+
+        $modalNewGame.modal("show");
+
+        return false;
+    });
+
     $settings = new Settings($modalSettings.find("form"));
+    $newGame = new NewGame($modalNewGame.find("form"));
+
     $lock = new Lock($(".lock"));
     $messageBox = new MessageBox($("#message-box"));
     $lightDarkMode = new DropDownMenu($("#light-dark-mode"));
@@ -210,14 +225,20 @@ $(function () {
         setColorTheme(getSystemColorTheme());
     }
 
+    $newGame.on("save", function () {
+        $modalNewGame.modal("hide");
+        restartGame();
+    });
     $settings.on("save", function () {
         $modalSettings.modal("hide");
         changeLanguageTo(SettingsUtils.language);
-        restartGame();
     });
 
     $modalSettings.on("shown.bs.modal", function () {
         $settings.load();
+    });
+    $modalNewGame.on("shown.bs.modal", function () {
+        $newGame.load();
     });
 
     $("#btn-unlock").click(function (event) {
