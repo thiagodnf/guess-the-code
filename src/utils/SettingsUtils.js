@@ -11,6 +11,15 @@ class SettingsUtils {
         SettingsUtils.target = [0, 0, 0];
         SettingsUtils.interval = { min: 0, max: 9 };
         SettingsUtils.audio = true;
+        SettingsUtils.repetition = false;
+    }
+
+    static get repetition() {
+        return LocalStorageUtils.getObject("repetition", false);
+    }
+
+    static set repetition(value) {
+        return LocalStorageUtils.setItem("repetition", value);
     }
 
     static get audio() {

@@ -6,7 +6,7 @@ class Game {
         this.min = min;
         this.max = max;
 
-        // console.log("Target: ", target);
+        console.log("Target: ", target);
     }
 
     length() {
@@ -20,6 +20,15 @@ class Game {
         let valids = 0;
         let corrects = 0;
         let message = "";
+
+        if (!SettingsUtils.repetition) {
+
+            if (new Set(numbers).size !== arraySize) {
+                message = "invalid.repeated.numbers";
+                return { attempts: this.attempts, valids, corrects, message };
+            }
+        }
+
 
         for (let i in numbers) {
 

@@ -11,6 +11,7 @@ class Settings extends Observable {
         this.$interval = new InputRange(this.$el.find("#interval"));
         this.$target = new InputDynamic(this.$el.find("#manuals"));
         this.$audio = new InputSwitch(this.$el.find("#audio"));
+        this.$repetition = new InputSwitch(this.$el.find("#repetition"));
 
         const that = this;
 
@@ -31,8 +32,11 @@ class Settings extends Observable {
         });
 
         this.$audio.on("change", function (audio) {
-
             SettingsUtils.audio = audio;
+        });
+
+        this.$repetition.on("change", function (repetition) {
+            SettingsUtils.repetition = repetition;
         });
 
         this.$el.find("#save").click(function () {
@@ -78,6 +82,7 @@ class Settings extends Observable {
         this.$interval.value = SettingsUtils.interval;
         this.$language.value = SettingsUtils.language;
         this.$audio.value = SettingsUtils.audio;
+        this.$repetition.value = SettingsUtils.repetition;
         this.$target.value = Array(SettingsUtils.size).fill(0);
 
         this.$el.find("input").first().focus();

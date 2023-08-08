@@ -258,6 +258,7 @@ $(function () {
     });
 
     $(document).on("keypress", "#numbers .number", function (e) {
+
         if (e.which == 13) {
 
             const next = $(e.target).next();

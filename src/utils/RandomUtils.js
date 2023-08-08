@@ -22,6 +22,26 @@ class RandomUtils {
 
     static nextCode(size = 3, interval = { min: 0, max: 9 }) {
 
+        if (SettingsUtils.repetition) {
+            return this.nextCodeWithRepetition(size, interval);
+        } else {
+            return this.nextCodeWithoutRepetition(size, interval);
+        }
+    }
+
+    static nextCodeWithoutRepetition(size = 3, interval = { min: 0, max: 9 }) {
+
+        const random = new Set();
+
+        while (random.size !== size) {
+            random.add(RandomUtils.nextInt(interval.min, interval.max));
+        }
+
+        return [...random];
+    }
+
+    static nextCodeWithRepetition(size = 3, interval = { min: 0, max: 9 }) {
+
         const random = [];
 
         for (let i = 0; i < size; i++) {
