@@ -21,15 +21,6 @@ class Game {
         let corrects = 0;
         let message = "";
 
-        if (!SettingsUtils.repetition) {
-
-            if (new Set(numbers).size !== arraySize) {
-                message = "invalid.repeated.numbers";
-                return { attempts: this.attempts, valids, corrects, message };
-            }
-        }
-
-
         for (let i in numbers) {
 
             let number = numbers[i];
@@ -62,6 +53,13 @@ class Game {
 
         if (numbers.length !== this.target.length) {
             return "code.has.different.length";
+        }
+
+        if (!SettingsUtils.repetition) {
+
+            if (new Set(numbers).size !== arraySize) {
+                return "invalid.repeated.numbers";
+            }
         }
 
         return this.validate(numbers);
