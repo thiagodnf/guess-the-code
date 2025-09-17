@@ -17,3 +17,8 @@ label {
 .dropdown-toggle::after {
     color: var(--bs-body-color) !important
 }
+
+.navbar {
+    background-color: rgba(72, 120, 160, 1) !important;
+    box-shadow: 0px 1.5px 5px 0px rgba(50, 50, 50, 0.75);
+}
