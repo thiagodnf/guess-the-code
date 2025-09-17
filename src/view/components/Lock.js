@@ -9,10 +9,10 @@ class Lock {
     }
 
     open() {
-        this.$el.find("i").removeClass("fa-lock").addClass("fa-lock-open");
+        this.$el.find("i").removeClass("bi-lock-fill").addClass("bi-unlock-fill");
     }
 
     close() {
-        this.$el.find("i").removeClass("fa-lock-open").addClass("fa-lock");
+        this.$el.find("i").removeClass("bi-unlock-fill").addClass("bi-lock-fill");
     }
 }
